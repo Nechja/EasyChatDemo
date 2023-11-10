@@ -1,3 +1,4 @@
+using System.Dynamic;
 using DataAccess.Context;
 using DataAccess.Models;
 using DataAccess.Services;
@@ -70,7 +71,7 @@ public class ChatRepoTests
 
         // Assert
         Assert.NotNull(messages);
-        Assert.IsType<List<Message>>(messages);
+        Assert.IsType<List<ExpandoObject>>(messages);
     }
 
     [Fact]
