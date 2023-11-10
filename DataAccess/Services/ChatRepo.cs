@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,13 +48,23 @@ public class ChatRepo
         }
     }
 
-    public async Task<List<Message>> GetMessages()
+    public async Task<List<ExpandoObject>> GetMessages()
     {
         using (var context = _contextFactory.CreateDbContext())
         {
+
 	        var messages = await context.Messages.Include(m => m.User).ToListAsync();
 
-			return messages;
+            var cleanMessages = new List<ExpandoObject>();
+            foreach (var message in messages)
+            {
+				dynamic cleanMessage = new ExpandoObject();
+				cleanMessage.Content = message.Content;
+				cleanMessage.User = message.User.Name;
+				cleanMessages.Add(cleanMessage);
+			}
+
+			return cleanMessages.ToArray().Reverse().ToList();
         }
     }
 
@@ -72,4 +83,15 @@ public class ChatRepo
             return responce;
         }
     }
+
+    public async Task<User> GetUser(string name)
+    {
+        using (var context = _contextFactory.CreateDbContext())
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == name);
+
+            return user;
+        }
+    }
+
 }

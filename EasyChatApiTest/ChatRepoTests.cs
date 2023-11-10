@@ -120,4 +120,21 @@ public class ChatRepoTests
 		// Assert
 		Assert.True(isUser);
 	}
+
+
+    [Fact]
+    public async Task GetUser()
+    {
+        // Arrange
+        var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
+        var repo = new ChatRepo(factory);
+        await repo.AddUser("kayla");
+
+        // Act
+        var user = await repo.GetUser("kayla");
+
+        // Assert
+        Assert.NotNull(user);
+        Assert.Equal("kayla", user.Name);
+    }
 }
