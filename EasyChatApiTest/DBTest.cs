@@ -15,8 +15,6 @@ public class DBTest
 {
     private DbContextOptions<ChatDbConext> CreateNewContextOptions()
     {
-        // Create a fresh service provider, and therefore a fresh 
-        // InMemory database instance.
         var builder = new DbContextOptionsBuilder<ChatDbConext>();
         builder.UseInMemoryDatabase("ChatDbTest");
 

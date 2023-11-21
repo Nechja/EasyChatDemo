@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models;
 
-public class Message
+public class Message : IMessageModel
 {
     [Key]
     public int Id { get; set; }

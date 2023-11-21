@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SignalR Example</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("https://localhost:7057/ChatHub") 
+                .build();
+
+            connection.on("ReceiveMessage", function (message) {
+                let messageDisplay = document.getElementById("messageDisplay");
+                messageDisplay.innerText += message + "\n"; 
+            });
+
+            connection.start().then(function () {
+                console.log("Connected to SignalR hub!");
+            }).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            document.getElementById("sendMessageButton").addEventListener("click", function (event) {
+                let message = document.getElementById("messageInput").value;
+                connection.invoke("SendMessage", "test", message).catch(function (err) {
+                    return console.error(err.toString());
+                });
+                event.preventDefault();
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div id="messageDisplay"></div>
+
+<input type="text" id="messageInput"/>
+<button id="sendMessageButton">Send Message</button>
+</body>
+</html>

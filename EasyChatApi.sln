@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyChatApiTest", "EasyChat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{471FB5C6-6C63-4B8B-A05C-03EB1FD5FB0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{F9E3121E-CEC4-48DF-B427-825172B32183}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{471FB5C6-6C63-4B8B-A05C-03EB1FD5FB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{471FB5C6-6C63-4B8B-A05C-03EB1FD5FB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{471FB5C6-6C63-4B8B-A05C-03EB1FD5FB0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E3121E-CEC4-48DF-B427-825172B32183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E3121E-CEC4-48DF-B427-825172B32183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E3121E-CEC4-48DF-B427-825172B32183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E3121E-CEC4-48DF-B427-825172B32183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

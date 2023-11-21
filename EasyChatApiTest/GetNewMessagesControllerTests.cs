@@ -40,8 +40,45 @@ public class GetNewMessagesControllerTests
 
 	//	Assert.NotNull(model);
 	//	Assert.True(model.Any(), "hello world");
-		
+
 	//}
+
+	[Fact]
+	public async Task Get()
+	{
+				// Arrange
+		var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
+		var repo = new ChatRepo(factory);
+		var User = new User { Name = "kayla" };
+		await repo.AddUser(User.Name);
+		await repo.AddMessage("hello world", User.Name);
+		var controller = new MessagesController(new NullLogger<MessagesController>(), repo);
+
+		// Act
+		var result = await controller.Get();
+
+		// Assert
+		var viewResult = Assert.IsType<List<Message>>(result);
+		var model = Assert.IsAssignableFrom<IEnumerable<Message>>(viewResult);
+
+		Assert.NotNull(model);
+		Assert.True(model.Any(), "hello world");
+
+	}
+
+	[Fact]
+	public async Task Post()
+	{
+		//uses http to post a new message
+		// Arrange
+
+		var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
+		var repo = new ChatRepo(factory);
+		var User = new User { Name = "kayla" };
+		await repo.AddUser(User.Name);
+		var controller = new MessagesController(new NullLogger<MessagesController>(), repo);
+
+	}
 
 
 }

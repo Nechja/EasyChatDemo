@@ -15,7 +15,7 @@ public class ChatRepoTests
     {
 
         _dbContextOptions = new DbContextOptionsBuilder<ChatDbConext>()
-            .UseInMemoryDatabase(databaseName: "ChatDb") // Using an in-memory database for testing
+            .UseInMemoryDatabase(databaseName: "ChatDb") 
             .Options;
     }
 

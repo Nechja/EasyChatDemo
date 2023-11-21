@@ -7,7 +7,10 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DataAccess.Models;
-public class User
+
+
+
+public class User : IUserModel
 {
     [Key]
     public int Id { get; set; }

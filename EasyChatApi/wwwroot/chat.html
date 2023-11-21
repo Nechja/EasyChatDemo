@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Chat</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+	<style>
+        body {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+	</style>
+</head>
+<body>
+<div id="chatApp">
+	<div class="form-group" id="usernameSection">
+		<label for="username">Username</label>
+		<input type="text" class="form-control" id="username" />
+		<button class="btn btn-primary" onclick="connectToChat()">Connect</button>
+	</div>
+	<div class="container" style="display: none;" id="chatSection">
+		<div id="messages" style="height: 80vh; border: 1px solid #ced4da; padding: 1rem; overflow-y: auto;">
+		</div>
+		<footer class="footer mt-auto py-3 bg-dark">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-1">
+						<label for="messageToSend" id="usernameDisplay" class="mb-0 text-warning text-right">:</label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" class="form-control bg-dark text-light" id="messageToSend" />
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-dark" onclick="sendMessage()">Send Message</button>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+</div>
+<script src="chat.js"></script>
+</body>
+</html>
