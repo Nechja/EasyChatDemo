@@ -12,9 +12,9 @@ namespace EasyChatApi.Controllers;
 public class MessagesController : ControllerBase
 {
     private readonly ILogger<MessagesController> _logger;
-    private readonly ChatRepository _repository;
+    private readonly IChatRepository _repository;
 
-    public MessagesController(ILogger<MessagesController> logger, ChatRepository repository)
+    public MessagesController(ILogger<MessagesController> logger, IChatRepository repository)
     {
         _logger = logger;
         _repository = repository;

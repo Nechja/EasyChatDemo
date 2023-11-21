@@ -10,7 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace DataAccess.Services;
-public class ChatRepository
+
+public class ChatRepository : IChatRepository
 {
 
     readonly ChatDbConext context;
@@ -58,22 +59,7 @@ public class ChatRepository
 
     }
 
-    public async Task<List<Message>> GetMessagesSinceLastActive(int userId)
-    {
-
-        var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
-        var responce = await context.Messages.Include(m => m.User).ToListAsync();
-        if (user != null)
-        {
-            responce = responce.Where(m => m.TimeStamp > user.LastActive).ToList();
-            user.LastActive = DateTime.UtcNow;
-            await context.SaveChangesAsync();
-        }
-        return responce;
-
-    }
-
-    public async Task<User> GetUser(string name)  => await context.Users.FirstOrDefaultAsync(u => u.Name == name);
+    public async Task<IUserModel> GetUser(string name)  => await context.Users.FirstOrDefaultAsync(u => u.Name == name);
 
 
 }
