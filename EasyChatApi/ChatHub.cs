@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 public class ChatHub : Hub
 {
-    private readonly ChatRepository _repository;
+    private readonly IChatRepository _repository;
 
-    public ChatHub(ChatRepository repository)
+    public ChatHub(IChatRepository repository)
     {
         _repository = repository;
     }

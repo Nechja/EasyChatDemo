@@ -15,6 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return console.error(err.toString());
     });
 
+    connection.onclose(async () => {
+
+        console.error("Disconnected from the hub");
+        connection.start().catch(function (err) { return console.error(err.toString()) });
+        
+    });
+
 });
 
 function connectToChat() {
@@ -28,14 +35,18 @@ function connectToChat() {
 }
 
 function sendMessage() {
-    let messageToSend = document.getElementById('messageToSend').value;
-    if (messageToSend) {
+    let messageToSend = document.getElementById("messageToSend").value;
+    if (messageToSend && connection.state === signalR.HubConnectionState.Connected) {
         connection.invoke("SendMessage", userName, messageToSend).catch(function (err) {
             return console.error(err.toString());
         });
         console.log("Message sent");
+        document.getElementById("messageToSend").value = '';
+    } else {
+        console.error("Cannot send message. The connection is not open.");
     }
 }
+
 
 function addMessage(user, message) {
     const messageElement = document.createElement('div');

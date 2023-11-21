@@ -2,6 +2,7 @@ using DataAccess.Context;
 using DataAccess.Models;
 using DataAccess.Services;
 using EasyChatApi.Controllers;
+using EasyChatApi.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -46,7 +47,7 @@ public class GetNewMessagesControllerTests
 	[Fact]
 	public async Task Get()
 	{
-				// Arrange
+		// Arrange
 		var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
 		var repo = new ChatRepository(factory);
 		var User = new User { Name = "kayla" };
@@ -58,12 +59,11 @@ public class GetNewMessagesControllerTests
 		var result = await controller.Get();
 
 		// Assert
-		var viewResult = Assert.IsType<List<Message>>(result);
-		var model = Assert.IsAssignableFrom<IEnumerable<Message>>(viewResult);
+		var viewResult = Assert.IsType<List<MessageViewModel>>(result);
+		var model = Assert.IsAssignableFrom<IEnumerable<MessageViewModel>>(viewResult);
 
 		Assert.NotNull(model);
 		Assert.True(model.Any(), "hello world");
-
 	}
 
 	[Fact]
