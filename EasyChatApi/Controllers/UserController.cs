@@ -9,9 +9,9 @@ namespace EasyChatApi.Controllers;
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
-    private readonly ChatRepo _repository;
+    private readonly ChatRepository _repository;
 
-    public UserController(ILogger<UserController> logger, ChatRepo repository)
+    public UserController(ILogger<UserController> logger, ChatRepository repository)
     {
         _logger = logger;
         _repository = repository;

@@ -48,7 +48,7 @@ public class GetNewMessagesControllerTests
 	{
 				// Arrange
 		var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-		var repo = new ChatRepo(factory);
+		var repo = new ChatRepository(factory);
 		var User = new User { Name = "kayla" };
 		await repo.AddUser(User.Name);
 		await repo.AddMessage("hello world", User.Name);
@@ -73,7 +73,7 @@ public class GetNewMessagesControllerTests
 		// Arrange
 
 		var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-		var repo = new ChatRepo(factory);
+		var repo = new ChatRepository(factory);
 		var User = new User { Name = "kayla" };
 		await repo.AddUser(User.Name);
 		var controller = new MessagesController(new NullLogger<MessagesController>(), repo);

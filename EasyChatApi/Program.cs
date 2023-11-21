@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextFactory<ChatDbConext>(options => options.UseInMemoryDatabase("ChatDb"));
-builder.Services.AddScoped<ChatRepo>();
+builder.Services.AddScoped<ChatRepository>();
 builder.Services.AddSignalR();
 
 

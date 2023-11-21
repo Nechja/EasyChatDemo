@@ -2,6 +2,7 @@
 using DataAccess.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Dynamic;
+using EasyChatApi.ViewModels;
 
 namespace EasyChatApi.Controllers;
 
@@ -11,9 +12,9 @@ namespace EasyChatApi.Controllers;
 public class MessagesController : ControllerBase
 {
     private readonly ILogger<MessagesController> _logger;
-    private readonly ChatRepo _repository;
+    private readonly ChatRepository _repository;
 
-    public MessagesController(ILogger<MessagesController> logger, ChatRepo repository)
+    public MessagesController(ILogger<MessagesController> logger, ChatRepository repository)
     {
         _logger = logger;
         _repository = repository;
@@ -23,11 +24,16 @@ public class MessagesController : ControllerBase
 
 
     [HttpGet(Name = "GetAllMessages")]
-    public async Task<List<ExpandoObject>> Get()
+    public async Task<List<MessageViewModel>> Get()
     {
         _logger.LogInformation($"Getting all messages");
-        dynamic messages = await _repository.GetMessages();
-        return messages;
+        var messageList = new List<MessageViewModel>();
+        foreach (var message in await _repository.GetMessagesAndUsers())
+        {
+			messageList.Add(new MessageViewModel { User = message.Keys.First().Name, Content = message.Values.First().Content });
+			
+		}
+        return messageList;
     }
 
     [HttpPost(Name = "AddMessage")]

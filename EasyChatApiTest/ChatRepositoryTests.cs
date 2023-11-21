@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace EasyChatApiTest;
 
-public class ChatRepoTests
+public class ChatRepositoryTests
 {
     private readonly DbContextOptions<ChatDbConext> _dbContextOptions;
 
-    public ChatRepoTests()
+    public ChatRepositoryTests()
     {
 
         _dbContextOptions = new DbContextOptionsBuilder<ChatDbConext>()
@@ -24,7 +24,7 @@ public class ChatRepoTests
     {
         // Arrange
         var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-        var repo = new ChatRepo(factory);
+        var repo = new ChatRepository(factory);
 
         // Act
         await repo.AddUser("kayla");
@@ -43,7 +43,7 @@ public class ChatRepoTests
     {
         // Arrange
         var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-        var repo = new ChatRepo(factory);
+        var repo = new ChatRepository(factory);
         await repo.AddUser("a cat");
 
         // Act
@@ -64,14 +64,13 @@ public class ChatRepoTests
     {
         // Arrange
         var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-        var repo = new ChatRepo(factory);
+        var repo = new ChatRepository(factory);
 
         // Act
-        var messages = await repo.GetMessages();
+        var messages = await repo.GetMessagesAndUsers();
 
         // Assert
         Assert.NotNull(messages);
-        Assert.IsType<List<ExpandoObject>>(messages);
     }
 
     [Fact]
@@ -79,7 +78,7 @@ public class ChatRepoTests
     {
         // Arrange
         var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-        var repo = new ChatRepo(factory);
+        var repo = new ChatRepository(factory);
         await repo.AddUser("kayla");
         await repo.AddUser("a cat");
 
@@ -112,7 +111,7 @@ public class ChatRepoTests
     {
 		// Arrange
 		var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-		var repo = new ChatRepo(factory);
+		var repo = new ChatRepository(factory);
         await repo.AddUser("kayla");
 
 		// Act
@@ -128,7 +127,7 @@ public class ChatRepoTests
     {
         // Arrange
         var factory = new PooledDbContextFactory<ChatDbConext>(_dbContextOptions);
-        var repo = new ChatRepo(factory);
+        var repo = new ChatRepository(factory);
         await repo.AddUser("kayla");
 
         // Act

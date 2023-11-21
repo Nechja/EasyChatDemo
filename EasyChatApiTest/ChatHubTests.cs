@@ -32,7 +32,7 @@ public class ChatHubTests
 
         mockClients.Setup(clients => clients.All).Returns(mockClientProxy.Object);
 
-        var chatRepo = new ChatRepo(_contextFactory);
+        var chatRepo = new ChatRepository(_contextFactory);
         var chatHub = new ChatHub(chatRepo)
         {
             Clients = mockClients.Object

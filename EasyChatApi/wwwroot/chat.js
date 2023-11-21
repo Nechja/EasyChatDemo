@@ -65,7 +65,7 @@ function loadMessages() {
         })
         .then(data => {
             data.forEach(message => {
-                addMessage(message.User, message.Content);
+                addMessage(message.user, message.content);
             });
             if (data.length === 0) {
                 addMessage('System', 'No messages yet 😶');
