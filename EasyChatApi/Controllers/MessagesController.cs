@@ -23,7 +23,7 @@ public class MessagesController : ControllerBase
 
 
 
-    [HttpGet(Name = "GetAllMessages")]
+    [HttpGet(Name = "Messages")]
     public async Task<List<MessageViewModel>> Get()
     {
         _logger.LogInformation($"Getting all messages");
@@ -36,7 +36,7 @@ public class MessagesController : ControllerBase
         return messageList;
     }
 
-    [HttpPost(Name = "AddMessage")]
+    [HttpPost(Name = "Message")]
     public async Task AddMessage(string content, string userName)
     {
         _logger.LogInformation($"Adding Message: {content} from {userName}");

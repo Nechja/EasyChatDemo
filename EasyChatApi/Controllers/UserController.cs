@@ -17,14 +17,14 @@ public class UserController : ControllerBase
         _repository = repository;
     }
 
-    [HttpPost(Name = "AddUser")]
+    [HttpPost(Name = "User")]
     public async Task AddUser(string userName)
     {
         _logger.LogInformation($"Adding User Name: {userName}");
         await _repository.AddUser(userName);
     }
 
-    [HttpGet(Name = "GetUser")]
+    [HttpGet(Name = "User")]
     public async Task<User> GetUser(string userName)
     {
         _logger.LogInformation($"Getting User Name: {userName}");
