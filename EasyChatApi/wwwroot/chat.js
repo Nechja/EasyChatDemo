@@ -35,7 +35,7 @@ function connectToChat() {
 }
 
 function sendMessage() {
-    let messageToSend = document.getElementById("messageToSend").value;
+    const messageToSend = document.getElementById("messageToSend").value;
     if (messageToSend && connection.state === signalR.HubConnectionState.Connected) {
         connection.invoke("SendMessage", userName, messageToSend).catch(function (err) {
             return console.error(err.toString());
@@ -86,6 +86,6 @@ function loadMessages() {
             }
         })
         .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
+            console.error('There has been a problem during the fetch operation:', error);
         });
 }

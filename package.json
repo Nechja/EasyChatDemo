@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Nechja/EasyChatDemo#readme",
   "dependencies": {
-    "@microsoft/signalr": "^8.0.0"
+    "@microsoft/signalr": "^8.0.0",
+    "vue": "^3.3.10"
   }
 }
